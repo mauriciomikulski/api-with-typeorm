@@ -3,7 +3,8 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import expressWinstons from 'express-winston';
 import * as logging from './utils/log.helper';
-import { CommonRoutes } from './routes/common.routes';
+import { CommonRoutes } from './routes/CommonRoutes';
+import { UsersRoutes } from './routes/UsersRoutes';
 import { LOG_CONSTANTS } from './configs/constants/log.constants';
 
 class App {
@@ -70,7 +71,7 @@ class App {
       const error = new Error('You dont have permission to access this page');
       res.status(401).send(error.message);
     })
-
+    this.routes.push(new UsersRoutes(this.server));
 
   };
 
