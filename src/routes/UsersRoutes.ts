@@ -1,6 +1,7 @@
 import { Application } from 'express';
 import { ROUTES_CONSTANTS } from '../configs/constants/RoutesContants';
 import { CommonRoutes } from './CommonRoutes';
+import { ExtractTokenProvider } from '../providers/ExtractTokenProvider';
 import { CreateUserController } from '../controllers/Users/CreateUserController';
 import { GetAllUsersController } from '../controllers/Users/GetAllUsersController';
 import { GetOneUserController } from '../controllers/Users/GetOneUserController';
@@ -14,15 +15,15 @@ export class UsersRoutes extends CommonRoutes {
 
   initRoutes(): Application {
     this.app.route(ROUTES_CONSTANTS.users.create)
-      .post(CreateUserController.handle);
+      .post(ExtractTokenProvider.extract, CreateUserController.handle);
     this.app.route(ROUTES_CONSTANTS.users.getAll)
-      .get(GetAllUsersController.handle);
+      .get(ExtractTokenProvider.extract, GetAllUsersController.handle);
     this.app.route(ROUTES_CONSTANTS.users.getById)
-      .get(GetOneUserController.handle);
+      .get(ExtractTokenProvider.extract, GetOneUserController.handle);
     this.app.route(ROUTES_CONSTANTS.users.update)
-      .put(UpdateUserController.handle);
+      .put(ExtractTokenProvider.extract, UpdateUserController.handle);
     this.app.route(ROUTES_CONSTANTS.users.delete)
-      .delete(DeleteUserController.handle);
+      .delete(ExtractTokenProvider.extract, DeleteUserController.handle);
     return this.app;
   }
 }
