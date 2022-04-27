@@ -1,4 +1,4 @@
-import { IMailTrap, IMessage } from "../../providers/IMailTrap.provider";
+import { IMailTrap, IMessage } from "../../providers/IMailTrapProvider";
 import nodemailer from 'nodemailer';
 import Mail from "nodemailer/lib/mailer";
 

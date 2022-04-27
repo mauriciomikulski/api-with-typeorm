@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import * as logging from '../../utils/log.helper';
+import * as logging from '../../utils/LogHelper';
 import { GetOneUserService } from '../../services/Users/GetOneUserService';
-import { LOG_CONSTANTS } from '../../configs/constants/log.constants';
+import { LOG_CONSTANTS } from '../../configs/constants/LogConstants';
 
 export class GetOneUserController {
   protected NAMESPACE: string = "Users";

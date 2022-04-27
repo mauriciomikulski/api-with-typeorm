@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import * as logging from '../../utils/log.helper';
+import * as logging from '../../utils/LogHelper';
 import { CreateUserService } from '../../services/Users/CreateUserService';
-import { LOG_CONSTANTS } from '../../configs/constants/log.constants';
+import { LOG_CONSTANTS } from '../../configs/constants/LogConstants';
 
 export class CreateUserController {/* </snippet> */
   protected NAMESPACE: string = "Users";
@@ -12,7 +12,7 @@ export class CreateUserController {/* </snippet> */
     const user = { user_nome, user_email, user_login, user_password };
     try {
       const createdUser = await CreateUserService.execute(user);
-      return res.json(createdUser);
+      return res.status(201).json(createdUser);
     } catch (error) {
       return res.status(400).json({
         name: error.name,
