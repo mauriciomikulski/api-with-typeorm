@@ -1,4 +1,3 @@
-import express from 'express';
 import config from './configs/ServerConfig';
 
 import app from './app';

@@ -1,3 +1,4 @@
+import "express-async-errors"
 import express, { Application, Router } from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
@@ -7,6 +8,7 @@ import { CommonRoutes } from './routes/CommonRoutes';
 import { UsersRoutes } from './routes/UsersRoutes';
 import { LOG_CONSTANTS } from './configs/constants/LogConstants';
 import "./services/DataBase/data-source";
+import { AuthRoutes } from './routes/AuthRoutes';
 
 class App {
   server: Application;
@@ -75,6 +77,7 @@ class App {
     })
     
     this.routes.push(new UsersRoutes(this.server));
+    this.routes.push(new AuthRoutes(this.server));
 
   };
 
