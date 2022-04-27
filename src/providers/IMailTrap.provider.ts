@@ -1,6 +1,6 @@
 interface IAdress {
-  email: string;
-  name: string;
+  user_email: string;
+  user_name: string;
 }
 
 export interface IMessage {

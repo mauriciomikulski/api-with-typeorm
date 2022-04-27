@@ -2,10 +2,11 @@ import express, { Application, Router } from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import expressWinstons from 'express-winston';
-import * as logging from './utils/log.helper';
+import  {log,loggerOptions}  from './utils/log.helper';
 import { CommonRoutes } from './routes/CommonRoutes';
 import { UsersRoutes } from './routes/UsersRoutes';
 import { LOG_CONSTANTS } from './configs/constants/log.constants';
+import "./services/DataBase/data-source";
 
 class App {
   server: Application;
@@ -13,6 +14,7 @@ class App {
   protected routes: Array<CommonRoutes> = [];
 
   constructor() {
+    
     this.NAMESPACE = 'App';
     this.server = express();
 
@@ -24,7 +26,7 @@ class App {
 
   protected middlewares() {
     this.server.use(express.json());
-    this.server.use(expressWinstons.logger(logging.loggerOptions));
+    this.server.use(expressWinstons.logger(loggerOptions));
     this.server.use(cors());
     this.server.use(bodyParser.json());
     this.server.use(bodyParser.urlencoded({ extended: true }));
@@ -48,14 +50,14 @@ class App {
 
   protected addLoggers() {
     this.server.use((req, res, next) => {
-      logging.log(
+      log(
         this.NAMESPACE,
         `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.ip}]`,
         LOG_CONSTANTS.LOG_LEVEL.INFO
       );
 
       res.on('finish', () => {
-        logging.log(
+        log(
           this.NAMESPACE,
           `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.ip}] - STATUS: [${res.statusCode}]`,
           LOG_CONSTANTS.LOG_LEVEL.INFO
@@ -71,6 +73,7 @@ class App {
       const error = new Error('You dont have permission to access this page');
       res.status(401).send(error.message);
     })
+    
     this.routes.push(new UsersRoutes(this.server));
 
   };

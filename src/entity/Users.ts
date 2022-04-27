@@ -1,25 +1,23 @@
 import { v4 as uuidv4 } from 'uuid';
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity({ name: 'users', synchronize: false })
+@Entity()
 export class Users {
-  @PrimaryColumn()
-  public readonly id?: string;
-  
-  public user_nome: string;
-  
-  public user_email: string;
-  
-  public user_login: string;
-  
-  public user_password: string;
-  
-  public user_tipo?: number;
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
+  @Column()
+  user_name: string;
+  @Column()
+  user_email: string;
+  @Column()
+  user_login: string;
+  @Column()
+  user_password: string;
+  @Column({default: 1})
+  user_tipo?: number;
 
-  constructor(props: Omit<Users, 'id'>, id?: string) {
-    Object.assign(this, props);
-
-    if (!id) {
+  constructor() {
+    if (!this.id) {
       this.id = uuidv4();
     }
   }

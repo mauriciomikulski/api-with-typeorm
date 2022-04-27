@@ -18,12 +18,12 @@ export class MailTrapService implements IMailTrap {
   public async sendMail(message: IMessage): Promise<void> {
     await this.transporter.sendMail({
       to: {
-        name: message.to.name,
-        address: message.to.email
+        name: message.to.user_name,
+        address: message.to.user_email
       },
       from: {
-        name: message.to.name,
-        address: message.to.email
+        name: message.to.user_name,
+        address: message.to.user_email
       },
       subject: message.subject,
       html: message.body

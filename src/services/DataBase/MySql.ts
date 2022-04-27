@@ -1,19 +1,17 @@
 import "reflect-metadata";
 import config from '../../configs/server.config';
-import { Any, DataSource } from "typeorm";
+import { appDataSource } from "./data-source";
 
 
 export class MySqlConnection {
   conn;
   constructor() {
     this.connect();
-    this.initialize();
-    this.getRepository(Any);
   }
 
-  connect(): Promise<DataSource> {
+  connect() {
     try {
-      this.conn = new DataSource({
+      this.conn = appDataSource.setOptions({
         type: 'mysql',
         host: config.db.host,
         port: Number(config.db.port),
@@ -30,12 +28,5 @@ export class MySqlConnection {
     return this.conn;    
   }
 
-  initialize(): DataSource {
-    return this.conn.initialize();
-  }
-
-  getRepository(entity: any): DataSource {
-    return this.conn.getRepository(entity);
-  }
 }
 
