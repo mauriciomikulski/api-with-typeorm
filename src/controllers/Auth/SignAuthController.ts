@@ -12,8 +12,7 @@ export class SignAuthController {
         if (error) {
           log(NAMESPACE, error.message, LOG_CONSTANTS.LOG_LEVEL.ERROR, error);
           return res.status(401).json({
-            message: error.message,
-            error: error
+            message: error.message
           });
 
         } else if (token) {

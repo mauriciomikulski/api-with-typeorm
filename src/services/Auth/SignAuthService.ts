@@ -16,7 +16,9 @@ export class SignAuthService {
       if (result) {
         const token = jwt.sign({
           id: userFound.id,
-          email: userFound.user_email
+          userName: userFound.user_login,
+          name: userFound.user_name,
+          tipo: userFound.user_tipo
         }, process.env.JWT_SECRET, {
           subject: userFound.id,
           issuer: process.env.JWT_ISSUER,
