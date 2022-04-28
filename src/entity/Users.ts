@@ -6,13 +6,13 @@ export class Users {
   @PrimaryGeneratedColumn("uuid")
   id: string;
   @Column()
-  user_name: string;
+  user_name?: string;
   @Column()
-  user_email: string;
+  user_email?: string;
   @Column()
-  user_login: string;
+  user_login?: string;
   @Column()
-  user_password: string;
+  user_password?: string;
   @Column({default: 1})
   user_tipo?: number;
 

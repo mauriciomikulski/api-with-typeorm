@@ -15,9 +15,7 @@ export class UpdateUserService {
   static async execute(user: userToUpdate): Promise<Users | Error> {
     const userRepository = await appDataSource.getRepository<Users>(Users);
     const userToUpdate = await userRepository.findOneBy({ id: user.id });
-    console.log(userToUpdate.id);
     if (!userToUpdate) {
-      console.log(userToUpdate.id)
       return new Error("User not found");
     }
     userToUpdate.user_name = user.user_name ? user.user_name : userToUpdate.user_name;

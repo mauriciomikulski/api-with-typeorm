@@ -7,8 +7,8 @@ export class SignAuthController {
   static async handle(req: Request, res: Response): Promise<Response> {
     const NAMESPACE = 'SignAuthController';
     try {
-      const user = req.body;      
-      await SignAuthService.sign(user, (error, token) => {
+      const user = req.body;
+      await SignAuthService.sign(user, (error, token, userMatch) => {
         if (error) {
           log(NAMESPACE, error.message, LOG_CONSTANTS.LOG_LEVEL.ERROR, error);
           return res.status(401).json({
@@ -21,7 +21,8 @@ export class SignAuthController {
             message: 'User Authorized',
             token: token,
             token_type: 'Bearer',
-            expiresIn: 43199
+            expiresIn: 43199,
+            user: userMatch
           });
         }
       });
