@@ -12,6 +12,6 @@ export const ROUTES_CONSTANTS = {
     refresh: "/api/auth/refresh",
     forgotPassword: "/api/auth/forgot-password",
     resetPassword: "/api/auth/reset-password",
-    validate: "/api/auth/validate",
+    validate: "/api/auth/validate"
   }
 }

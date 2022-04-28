@@ -15,7 +15,7 @@ export class UsersRoutes extends CommonRoutes {
 
   initRoutes(): Application {
     this.app.route(ROUTES_CONSTANTS.users.create)
-      .post(ExtractTokenProvider.extract, CreateUserController.handle);
+      .post(CreateUserController.handle);
     this.app.route(ROUTES_CONSTANTS.users.getAll)
       .get(ExtractTokenProvider.extract, GetAllUsersController.handle);
     this.app.route(ROUTES_CONSTANTS.users.getById)

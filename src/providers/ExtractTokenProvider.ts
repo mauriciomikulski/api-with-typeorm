@@ -28,20 +28,17 @@ export class ExtractTokenProvider {
             });
           } else {
             return res.status(401).json({
-              message: 'Invalid token type',
-              error: null
+              message: 'Invalid token type'
             });
           }
         } else {
           return res.status(401).json({
-            message: 'Invalid token format',
-            error: null
+            message: 'Invalid token format'
           });
         }
       } else {
         return res.status(401).json({
-          message: 'No token provided',
-          error: null
+          message: 'Not authorized'
         });
       }
     } catch (error) {
