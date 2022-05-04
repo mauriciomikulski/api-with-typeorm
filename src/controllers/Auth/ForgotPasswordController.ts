@@ -4,8 +4,6 @@ import { LOG_CONSTANTS } from '../../configs/constants/LogConstants';
 import { ForgotPasswordService } from '../../services/Auth/ForgotPasswordService';
 
 export class ForgotPasswordController {
-  protected NAMESPACE: string = "ForgotPasswordController";
-  constructor() { log(this.NAMESPACE, "ForgotPasswordController", LOG_CONSTANTS.LOG_LEVEL.INFO); }
   static async handle(request: Request, response: Response): Promise<Response> {
     const user = request.body;
     try {

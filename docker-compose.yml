@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    command: yarn start
+    ports:
+      - "4002:4002"
+    volumes:
+      - .:/app

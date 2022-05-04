@@ -1,3 +1,5 @@
+import { log } from '../../utils/LogHelper';
+import { LOG_CONSTANTS } from '../../configs/constants/LogConstants';
 import { hash } from 'bcryptjs';
 import { Users } from "../../entity/Users";
 import { appDataSource } from "../DataBase/data-source";
@@ -14,10 +16,11 @@ type userToUpdate = {
 
 export class UpdateUserService {
   static async execute(user: userToUpdate): Promise<Users | Error> {
+    const NAMESPACE = "UpdateUserService";
+    log(NAMESPACE, `Updating user with id: ${user.id}`, LOG_CONSTANTS.LOG_LEVEL.INFO);
     const userRepository = await appDataSource.getRepository<Users>(Users);
     const userToUpdate = await userRepository.findOneBy({ id: user.id });
-    if (userToUpdate) {
-      userToUpdate
+    if (userToUpdate) {      
       if (user.user_password) {
         const passwordHash = await hash(user.user_password, 10);
         userToUpdate.user_name = user.user_name ? user.user_name : userToUpdate.user_name;
@@ -37,6 +40,7 @@ export class UpdateUserService {
         return userToUpdate;
       }
     } else {
+      log(NAMESPACE, `User with id: ${user.id} not found`, LOG_CONSTANTS.LOG_LEVEL.ERROR);
       return new Error('User not found');
     }    
   }

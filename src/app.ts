@@ -78,7 +78,6 @@ class App {
     
     this.routes.push(new UsersRoutes(this.server));
     this.routes.push(new AuthRoutes(this.server));
-
   };
 
 }

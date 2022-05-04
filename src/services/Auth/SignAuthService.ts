@@ -29,6 +29,7 @@ export class SignAuthService {
         const userMatch = { id, user_name, user_email, user_login, user_tipo };
         callback(null, token, userMatch);
       } else {
+        log(NAMESPACE, `User with login: ${user.user_login} not found`, LOG_CONSTANTS.LOG_LEVEL.ERROR);
         callback(new Error('Invalid password'), null, null);
       }
     });
