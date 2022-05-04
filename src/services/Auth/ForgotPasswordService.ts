@@ -25,6 +25,7 @@ export class ForgotPasswordService {
         });
       return userFound;
     } else {
+      log(NAMESPACE, `User not found: ${user.user_login}`, LOG_CONSTANTS.LOG_LEVEL.ERROR);
       return new Error("Invalid password");
     }
   }

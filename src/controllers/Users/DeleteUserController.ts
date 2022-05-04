@@ -1,11 +1,7 @@
 import { Request, Response } from 'express';
-import * as logging from '../../utils/LogHelper';
-import { DeleteUserService } from '../../services/Users/DeleteUserService';
-import { LOG_CONSTANTS } from '../../configs/constants/LogConstants';
+import { DeleteUserService } from '../../services/Users/DeleteUserService'; 
 
-export class DeleteUserController {
-  protected NAMESPACE: string = "Users";
-  constructor() { logging.log(this.NAMESPACE, "DeleteUserController", LOG_CONSTANTS.LOG_LEVEL.INFO); }
+export class DeleteUserController {/* <snippet> */
   static async handle(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
     try {

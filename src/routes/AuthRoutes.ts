@@ -19,4 +19,5 @@ export class AuthRoutes extends CommonRoutes {
       .post(ResetPasswordController.handle);
     return this.app;
   }
+  
 }
